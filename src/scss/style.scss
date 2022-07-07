@@ -1,0 +1,457 @@
+@import './help/vars_and_mixins.scss';
+@import './help/media_mixins.scss';
+@import './help/normalize.scss';
+@import './help/fonts.scss';
+
+.wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+img {
+    vertical-align: middle;
+}
+.subheader {
+    @include font($font-bold, 30px, 45px, $black);
+    margin-bottom: 15px;
+    text-align: center;
+    @include mobile {
+        font-size: 20px;
+        line-height: 30px;
+    }
+}
+.common-text {
+    max-width: 970px;
+    @include font($font-medium, 16px, 26px, $black);
+    margin-bottom: 60px;
+    text-align: center;
+    @include mobile {
+        font-size: 12px;
+        line-height: 20px;
+    }
+    @include tablet_md {
+        max-width: 370px;
+    }
+}
+
+.common-btn {
+    background: $blue;
+    @include flex(center, center, column);
+    transition: 0.3s;
+    &:hover {
+        border: 2px solid $blue;
+        background: rgba(255, 255, 255, 0.3);
+    }
+    &__link {
+        @include font($font-black, 16px, 24px, $black);
+        width: 100%;
+        padding: 8%;
+        text-align: center;
+        &:hover {
+            color: $blue;
+        }
+    }
+}
+//banner
+.banner {
+    background: url('../img/banner.png') no-repeat center/cover;
+
+    &__wrapper{
+        min-height: calc(100vh - 82px);
+        @include flex(center, center, row);
+    }
+    
+    &__content{
+        max-width: 1017px;
+        @include flex(center, center, column);
+        margin: 0 auto;
+        &_header {
+            @include font($font-bold, 40px, 60px, $white);
+            margin-bottom: 30px;
+            text-align: center;
+            @include tablet {
+                max-width: 80%;
+            }
+            @include mobile {
+                font-size: 20px;
+                line-height: 30px;
+            }
+        }
+        &_subheader {
+            @include font($font-medium, 30px, 45px, $blue);
+            text-align: center;
+            @include tablet {
+                max-width: 80%;
+            }
+            @include mobile {
+                font-size: 17px;
+                line-height: 26px;
+            }
+        }
+        &_btn {
+            width: 255px;
+            height: 60px;
+            margin-top: 65px;
+        }
+    }  
+}
+
+//header
+.header {
+    &__wrapper {
+        padding-top: 9px;
+    }
+    &__content {
+        max-width: $max-width;
+        @include flex(space-between, center, row);
+        margin: 0 auto;
+        &_nav-btn {
+            @include font($font-medium, 14px, 17px, $white);
+            &:not(:last-child){
+                margin-right: 45px;
+            }
+        }
+        &_nav {
+            @include tablet {
+                display: none;
+            }
+        }
+    }
+}
+.burger-menu {
+    position: relative;
+    @media (min-width:993px){
+         display: none;
+    }
+    &__checkbox {
+        display: none;
+        &:checked ~ .menu__btn > span {
+            transform: rotate(45deg);
+        }
+        &:checked ~ .menu__btn > span::before {
+            top: 0;
+            transform: rotate(0deg);
+        } 
+        &:checked ~ .menu__btn > span::after {
+            top: 0;
+            transform: rotate(90deg);
+        } 
+        &:checked ~ .menu__box {
+            right: 0;
+            top: 50px;
+            display: block;
+        }
+
+    }
+}
+
+.menu__btn {
+    display: flex;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    & span,
+    & span::before,
+    & span::after {
+        display: block;
+        position: absolute;
+        width: 26px;
+        height: 2px;
+        background-color: $white;
+    }
+    & span::before {
+        content: '';
+        top: -8px;
+    }
+    & span::after {
+        content: '';
+        top: 8px;
+    }
+}
+.menu__box {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    list-style: none;
+    text-align: end;
+    transition: 0.3s;
+}
+.menu__item {
+    display: block;
+    @include font($font-medium, 14px, 17px, $white);
+    text-decoration: none;
+    margin-bottom: 20px;
+    width: 100px;
+    transition: 0.3s;
+}
+
+//info
+.info {
+    &__wrapper {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    &__content {
+        width: 100%;
+        @include flex(flex-start, center, column);
+    
+        &_blocks {
+            width: 100%;
+            max-width: $max-width;
+            display: flex;
+            justify-content: space-between;
+            @include tablet_md {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        &_block {
+            @include flex(flex-start, center, column);
+            width: calc((100% - 60px)/3);
+            @include tablet_md {
+                width: 100%;
+                max-width: 370px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+.info-block {
+    &__image {
+        margin-bottom: 30px;
+    }
+    &__big-text {
+        @include font($font-bold, 20px, 32px, $black);
+        margin-bottom: 10px;
+        text-align: center;
+        @include mobile {
+            font-style: 16px;
+            line-height: 20px;
+        }
+    }
+    &__small-text {
+        @include font($font-medium, 16px, 26px, $black);
+        text-align: center;
+        @include mobile {
+            font-style: 12px;
+            line-height: 20px;
+        }
+    }
+}
+
+//images
+.images {
+    background: rgba(223, 234, 237, 0.5);
+    padding-top: 40px;
+    padding-bottom: 60px;
+
+    &__content {
+        max-width: $max-width;
+        @include flex(center, center,column);
+        margin: 0 auto;
+        &_blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 30px;
+            max-width: $max-width;
+            width: 100%;
+            @include mobile {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            @include tablet {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+.image-block {
+    position: relative;
+    &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(0deg, rgba(24, 24, 24, 0.5), rgba(24, 24, 24, 0.5));
+        transition: 0.5s;
+    }
+    &:hover::after {
+        background: transparent;
+    }
+    &__text {
+        @include font($font-bold, 20px, 30px, $white);
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom: 95px;
+        z-index: 1;
+    }
+    &__btn {
+        width: 170px;
+        height: 50px;
+        position: absolute;
+        left: calc((100% - 170px) / 2);
+        bottom: 30px;
+        z-index: 1;
+    }
+}
+//team
+.team {
+    &__wrapper {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    &__content {
+        width: 100%;
+        @include flex(center, center, column);
+        .members {
+            max-width: $max-width;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            @include tablet {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            &__block {
+                width: 32%;
+                @include flex(center, center, column);
+                @include tablet{ 
+                    width: 48%;
+                    margin-bottom: 30px;
+                }
+                @include mobile {
+                    width: 95%;
+                }
+                &_img {
+                    width: 100%;
+                    margin-bottom: 20px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                &_name {
+                    @include font($font-bold, 20px, 32px, $black);
+                }
+                &_position {
+                    @include font($font-medium, 16px, 26px, $black);
+                    margin-bottom: 20px;
+                }
+                &_networks {
+                    max-width: 196px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    svg:hover path {
+                        fill: $blue;
+                    }
+                }
+            }
+        }    
+    }
+}
+
+//footer 
+.footer {
+    &__wrapper {
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        background: $black;
+    }
+    &__content {
+        @include flex(space-between, center, row);
+        max-width: $max-width;
+        margin: 0 auto;
+        @include tablet {
+            flex-direction: column;
+            align-items: center;
+        }
+        &_copyright {
+            @include flex(center, flex-start, column);
+            @include tablet {
+                align-items: center;
+            }
+        }
+        &_contacts {
+            @include flex(space-between, flex-end, column); 
+            @include tablet {
+                align-items: center;
+            }
+        }
+    }
+    svg path {
+        fill: $white;
+    }
+}
+.copyright-block {
+    &__image {
+        margin-top: 6px;
+    }
+    &__text {
+        @include font($font-medium, 14px, 28px, $white);
+        text-align: center;
+    }
+}
+
+.contacts {
+    &__upper {
+        display: flex;
+        align-items: center;
+        margin-top: 26px;
+        @include desktop {
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        @include tablet {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        @include tablet_md {
+            flex-direction: column;
+            align-items: center;
+        }
+        &_location {
+            margin-right: 40px;
+            @include desktop {
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+            @include tablet {
+                margin-right: 20px;
+            }
+            @include mobile {
+                margin-right: 0;
+            }
+        }
+        &_number {
+            @include desktop {
+                margin-bottom: 20px;
+            }
+        }
+    }
+    &__lower {
+        max-width: 196px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+    } 
+}
+
+.location, .number {
+    margin-bottom: 20px;
+    &__img {
+        margin-right: 10px;
+    }
+    &__link {
+        @include flex(flex-start, center, row);
+        @include font($font-medium, 16px, 28px, $white);
+    }
+}
